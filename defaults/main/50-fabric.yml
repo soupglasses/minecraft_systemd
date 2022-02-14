@@ -1,0 +1,24 @@
+minecraft_fabric_enable: true
+
+minecraft_fabric_version: 1.18.1
+minecraft_fabric_loader_version: 0.13.1
+minecraft_fabric_installer_version: 0.10.2
+minecraft_fabric_checksum: 'sha256:bb30699ddc27bfa1b9dec48398a642605a69068828b4a46de6b9dfc952d4cda2'
+
+minecraft_fabric_jar:
+  url: >-
+    https://meta.fabricmc.net/v2/versions/loader/{{ minecraft_fabric_version
+    }}/{{ minecraft_fabric_loader_version }}/{{ minecraft_fabric_installer_version
+    }}/server/jar
+  name: >-
+    fabric-server-mc.{{ minecraft_fabric_version }}-loader.{{
+    minecraft_fabric_loader_version }}-launcher.{{
+    minecraft_fabric_installer_version }}.jar
+  checksum: >-
+    {{ minecraft_fabric_checksum }}
+
+minecraft_fabric_mods_folder: '{{ minecraft_root }}/mods'
+minecraft_fabric_mods:
+  - url: https://github.com/FabricMC/fabric/releases/download/0.46.4%2B1.18/fabric-api-0.46.4+1.18.jar
+    name: fabric-api-0.46.4+1.18.jar
+    checksum: 'sha256:bbc1ac58aabdc735208a2654857e838312aa87ee3e94178cc7790b382c8355a3'

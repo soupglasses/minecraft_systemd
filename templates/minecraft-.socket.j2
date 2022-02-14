@@ -1,0 +1,13 @@
+# vi: ft=systemd
+[Unit]
+Description=Minecraft Server Console - {{ minecraft_server_name }}
+
+[Socket]
+ListenFIFO=/run/minecraft-{{ minecraft_server_name }}/console
+SocketUser={{ minecraft_user }}
+SocketGroup={{ minecraft_group }}
+SocketMode=0666
+RemoveOnStop=true
+
+[Install]
+WantedBy=sockets.target

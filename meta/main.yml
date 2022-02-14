@@ -1,0 +1,17 @@
+galaxy_info:
+  role_name: minecraft_systemd
+  author: imsofi
+  description: Set up minecraft servers with systemd and ansible
+
+  min_ansible_version: 2.4
+
+  license: license (BSD-3-Clause)
+
+  galaxy_tags:
+    - minecraft
+    - systemd
+
+  platforms:
+    - name: Debian
+      versions:
+        - all

@@ -1,0 +1,14 @@
+minecraft_user: minecraft
+minecraft_group: "{{ minecraft_user }}"
+
+minecraft_server_name: default
+
+minecraft_root: /opt/minecraft
+minecraft_server_root: "{{ minecraft_root }}/worlds"
+minecraft_jars_root: "{{ minecraft_root }}/jars"
+
+minecraft_min_ram: 2G
+minecraft_max_ram: 2G
+
+minecraft_eula: false
+minecraft_java_flags: ""

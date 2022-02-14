@@ -1,0 +1,27 @@
+- name: Ensure our systemd service is present
+  template:
+    src: templates/minecraft-.service.j2
+    dest: "/etc/systemd/system/minecraft-{{ minecraft_server_name }}.service"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+    - restart minecraft
+
+- name: Ensure our systemd socket is present
+  template:
+    src: templates/minecraft-.socket.j2
+    dest: "/etc/systemd/system/minecraft-{{ minecraft_server_name }}.socket"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+    - restart minecraft
+
+- name: Ensure the systemd service is started and enabled
+  systemd:
+    name: "minecraft-{{ minecraft_server_name }}.service"
+    state: started
+    enabled: true

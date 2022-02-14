@@ -1,0 +1,7 @@
+- include_tasks: setup.yml
+- include_tasks: configure.yml
+
+- include_tasks: fabric/main.yml
+  when: minecraft_fabric_enable == true
+
+- include_tasks: systemd.yml

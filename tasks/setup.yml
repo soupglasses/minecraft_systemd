@@ -1,0 +1,38 @@
+- name: Ensure group is present
+  group:
+    name: "{{ minecraft_group }}"
+    system: true
+    state: present
+
+- name: Ensure the user is present
+  user:
+    name: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    system: true
+    shell: /bin/false
+    create_home: false
+    state: present
+
+- name: Ensure worlds folder exists
+  file:
+    path: "{{ minecraft_server_root }}"
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    state: directory
+    mode: "0755"
+
+- name: Ensure jar folder exists
+  file:
+    path: "{{ minecraft_jars_root }}"
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    state: directory
+    mode: "0755"
+
+- name: Ensure our server instance folder exists
+  file:
+    path: "{{ minecraft_server_root }}/{{ minecraft_server_name }}"
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    state: directory
+    mode: "0755"
