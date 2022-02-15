@@ -25,16 +25,17 @@ StandardError=journal
 Restart=on-failure
 RestartSec=60s
 
-# HACK: Here to avoid previous commands to carry over to the new started program.
-ExecStartPre=/bin/sh -c "/usr/bin/timeout --preserve-status 1s /usr/bin/cat /run/minecraft-{{ minecraft_server_name }}/console"
 ExecStart=/usr/bin/java -server -Xms{{ minecraft_min_ram }} -Xmx{{ minecraft_max_ram }} {{ minecraft_java_flags }} -jar server.jar nogui
 # Running 'save-all' first as a safety measure if anything goes wrong during the stop command.
 ExecStop=/bin/sh -c "/usr/bin/echo 'save-all' > /run/minecraft-{{ minecraft_server_name }}/console"
 ExecStop=/bin/sh -c "/usr/bin/echo 'stop' > /run/minecraft-{{ minecraft_server_name }}/console"
+# HACK: Here to avoid previous commands to carry over to the new started program.
+ExecStopPost=/bin/sh -c "/usr/bin/timeout --preserve-status 1s /usr/bin/cat /run/minecraft-{{ minecraft_server_name }}/console"
 # Due to Minecraft not respecting the different kill signals, we essentally have to let it run its own
 # stop command. This also makes it extremely difficult to know if our service has locked up, or is
 # just taking its time to shut down. NOTE: In the future id love to have an alternative way to do this.
 SuccessExitStatus=143
+
 KillSignal=SIGCONT
 TimeoutStopSec=60s
 FinalKillSignal=SIGINT
