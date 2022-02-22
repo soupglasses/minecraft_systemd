@@ -90,3 +90,7 @@ First setup:
 
 Using it after first setup:
 1. `source venv/bin/activate`
+
+### Tip for dealing with properties file.
+
+Each time the service boots, it will recursively look for `*.ansible` files, and make a copy without the extention. This is extremely handy to work with the horrible `server.properties` file. Which are parsed and completely rewritten each time they are read.
