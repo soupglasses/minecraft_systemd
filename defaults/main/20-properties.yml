@@ -1,3 +1,4 @@
+---
 minecraft_prop_enable_jmx_monitoring: "false"
 minecraft_prop_rcon_port: "25575"
 minecraft_prop_enable_command_block: "false"

@@ -1,3 +1,4 @@
+---
 - name: Ensure fabric jar is downloaded
   get_url:
     url: "{{ minecraft_fabric_jar.url }}"

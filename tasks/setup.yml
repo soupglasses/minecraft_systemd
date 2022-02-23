@@ -1,3 +1,4 @@
+---
 - name: Ensure group is present
   group:
     name: "{{ minecraft_group }}"

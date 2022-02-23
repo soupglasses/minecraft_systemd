@@ -1,3 +1,4 @@
+---
 minecraft_user: minecraft
 minecraft_group: "{{ minecraft_user }}"
 

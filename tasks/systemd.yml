@@ -1,3 +1,4 @@
+---
 - name: Ensure our systemd service is present
   template:
     src: templates/minecraft-.service.j2

@@ -1,3 +1,4 @@
+---
 - name: Catch if EULA has not been accepted
   fail:
     msg: "Minecraft's EULA has not been accepted. Read its EULA and set minecraft_eula to true."
