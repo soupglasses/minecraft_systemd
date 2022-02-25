@@ -6,7 +6,7 @@ Description=Minecraft Server Console - {{ minecraft_server_name }}
 ListenFIFO=/run/minecraft-{{ minecraft_server_name }}/console
 SocketUser={{ minecraft_user }}
 SocketGroup={{ minecraft_group }}
-SocketMode=0666
+SocketMode=0660
 RemoveOnStop=true
 
 [Install]
