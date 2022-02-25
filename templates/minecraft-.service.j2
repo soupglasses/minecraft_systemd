@@ -23,10 +23,10 @@ StandardOutput=journal
 StandardError=journal
 
 Restart=always
-RestartSec=15s
+RestartSec=60s
 
 ExecStartPre=/usr/bin/find . -name "*.ansible" -exec /bin/bash -c '/usr/bin/cp "$$1" "$${1%.ansible}"' - '{}' +
-ExecStart=/usr/bin/java -server -Xms{{ minecraft_min_ram }} -Xmx{{ minecraft_max_ram }} {{ minecraft_java_flags }} -jar server.jar nogui
+ExecStart=/usr/bin/java -Dlog4j.configurationFile=log4j2.xml -Xms{{ minecraft_min_ram }} -Xmx{{ minecraft_max_ram }} {{ minecraft_java_flags }} -jar server.jar nogui
 # Running 'save-all' first as a safety measure if anything goes wrong during the stop command.
 ExecStop=/bin/sh -c "/usr/bin/echo 'save-all' > /run/minecraft-{{ minecraft_server_name }}/console"
 ExecStop=/bin/sh -c "/usr/bin/echo 'stop' > /run/minecraft-{{ minecraft_server_name }}/console"
