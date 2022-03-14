@@ -23,7 +23,8 @@ roles:
       
       minecraft_fabric_mods:
         - url: https://github.com/FabricMC/fabric/releases/download/0.46.4%2B1.18/fabric-api-0.46.4+1.18.jar
-          name: fabric-api-0.46.4+1.18.jar
+          name: fabric-api
+          version: 0.46.4+1.18
           checksum: 'sha256:bbc1ac58aabdc735208a2654857e838312aa87ee3e94178cc7790b382c8355a3'
 ```
 

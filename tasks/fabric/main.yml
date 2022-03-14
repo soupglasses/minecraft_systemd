@@ -29,42 +29,20 @@
 - name: Download fabric mods
   get_url:
     url: "{{ item.url }}"
-    dest: "{{ minecraft_fabric_mods_folder }}/{{ item.name }}"
+    dest: "{{ minecraft_fabric_mods_folder }}/{{ item.name }}-{{ item.version }}.jar"
     checksum: "{{ item.checksum }}"
     owner: "{{ minecraft_user }}"
     group: "{{ minecraft_group }}"
     mode: "0644"
   with_items: "{{ minecraft_fabric_mods }}"
-  notify:
-    - restart minecraft
-
-- name: Find all symlinked mods
-  find:
-    path: "{{ minecraft_server_root }}/{{ minecraft_server_name }}/mods"
-    patterns: '*.jar'
-    file_type: link
-    recurse: false
-  register: _mods_current
-
-# TODO: Set up a validation check so we can skip resymlinking at each run.
-# Below code will always run. I have put the notify check on the Downloads
-# for now to give some kind of detection when a change actually occurs.
-# This does not catch removal of mods from the list.
-
-- name: Remove all symlinks to mods
-  file:
-    path: "{{ item.path }}"
-    follow: false
-    state: absent
-  with_items: "{{ _mods_current.files }}"
-  changed_when: false
 
 - name: Add symlinks to mods
   file:
-    src: "{{ minecraft_fabric_mods_folder }}/{{ item.name }}"
-    path: "{{ minecraft_server_root }}/{{ minecraft_server_name }}/mods/{{ item.name }}"
+    src: "{{ minecraft_fabric_mods_folder }}/{{ item.name }}-{{ item.version }}.jar"
+    path: "{{ minecraft_server_root }}/{{ minecraft_server_name }}/mods/{{ item.name }}.jar"
     owner: "{{ minecraft_user }}"
     group: "{{ minecraft_group }}"
     state: link
   with_items: "{{ minecraft_fabric_mods }}"
-  changed_when: false
+  notify:
+    - restart minecraft
