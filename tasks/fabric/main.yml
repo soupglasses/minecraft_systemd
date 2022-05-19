@@ -36,6 +36,14 @@
     mode: "0644"
   with_items: "{{ minecraft_fabric_mods }}"
 
+- name: Ensure server mod folder exists
+  file:
+    path: "{{ minecraft_server_root }}/{{ minecraft_server_name }}/mods"
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    state: directory
+    mode: "0755"
+
 - name: Add symlinks to mods
   file:
     src: "{{ minecraft_fabric_mods_folder }}/{{ item.name }}-{{ item.version }}.jar"
